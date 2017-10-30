@@ -1,0 +1,51 @@
+// Form errors
+// =======================================================
+label.error {
+	color				: #E40000;
+	font-weight	: bold;
+	margin-bottom: 12px;
+	margin-top	 : -2px;
+	padding-left : 5px;
+
+	.form-horizontal & {
+		display	 : block;
+		margin-top: 4px;
+	}
+}
+
+
+// Padding for icons in buttons
+// =======================================================
+.btn {
+
+	.caret{
+		margin-left: 4px; 
+	}
+
+	:not(.btn-icon) .caret, 
+	:not(.select2-choice.btn) .caret{
+		margin-left: 4px;
+	}
+} 
+
+
+// Bootstrap 3 XXS Media Grid
+// =======================================================
+@screen-xxs-max: 478px;
+
+@media (min-width: (@screen-xxs-max+1)) {
+	.visible-xxs {
+		display: none !important;
+	}
+	.hidden-xxs {
+		display: block !important;
+	}
+}
+@media (max-width: @screen-xxs-max) {
+	.visible-xxs {
+		display: block !important;
+	}
+	.hidden-xxs {
+		display: none !important;
+	}
+}

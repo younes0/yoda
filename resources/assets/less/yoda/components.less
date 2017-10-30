@@ -1,0 +1,34 @@
+iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+	position: relative; 
+}
+
+.pace {
+	@paceColor: #b22222;
+
+	.pace-progress {
+		background: @paceColor;
+	}
+	.pace-progress-inner{
+		box-shadow: 0 0 10px @paceColor, 0 0 5px @paceColor;
+	}
+	.pace-activity { 
+		border-top-color: @paceColor;
+		border-left-color: @paceColor;
+	}
+}
+
+.datepicker {
+	z-index: 10000 !important;
+}
+
+.bootstrap-filestyle {
+	margin-bottom: 15px;
+}
+
+.highcharts-legend-title tspan {
+	font-weight: normal;
+	color: #A1A1A1;
+}

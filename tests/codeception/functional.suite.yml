@@ -1,0 +1,20 @@
+class_name: FunctionalGuy
+modules:
+    enabled: 
+        - FunctionalHelper
+        - CodeHelper
+        - Asserts
+        - Db
+        - Laravel5
+    config:
+        Laravel5:
+            cleanup: false # transaction queries, not required here (http is already slow)
+            environment_file: .env.testing
+        Db:
+            # should the dump be reloaded before test suite
+            # DO populate when changing schema!
+            populate: false 
+
+            # should the dump be reloaded after each test
+            # not recommended
+            cleanup : false 

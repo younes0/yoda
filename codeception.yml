@@ -1,0 +1,33 @@
+paths:
+    tests  : tests/codeception
+    log    : storage/logs
+    data   : tests/codeception/_data
+    helpers: tests/codeception/_helpers
+
+settings:
+    bootstrap   : _bootstrap.php
+    suite_class : \PHPUnit_Framework_TestSuite
+    colors      : true
+    memory_limit: 1024M
+    log         : true
+    defer-flush : true
+
+modules:
+    config:
+        MailCatcher:
+            port: '1080'
+            url: 'http://192.168.56.20'
+        Db:
+            dsn     : 'pgsql:host=localhost;dbname=yskel_testing'
+            user    : 'admin'
+            password: 'postgres'
+            dump    : database/schemas/yskel_schema.sql
+
+# allows to add command option to specify environment with its specific config
+# usage: php codecept run --env yeb
+env:
+    yeb:
+         modules:
+            config:
+                MailCatcher:
+                    url: 'http://192.168.56.20'

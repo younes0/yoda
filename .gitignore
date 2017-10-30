@@ -1,0 +1,11 @@
+/vendor/
+/node_modules
+.env
+.env.testing
+Homestead.yaml
+
+/public/.htpasswd
+/public/build
+npm-debug.log
+/storage/debugbar
+.DS_Store

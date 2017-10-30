@@ -1,0 +1,15 @@
+.loading-dots {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    animation: ellipsis 2s infinite;
+    -moz-animation: ellipsis 2s infinite;
+    -webkit-animation: ellipsis 2s infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+}
+
+@-moz-keyframes ellipsis { from { width: 10px; } to { width: 35px; }}
+@-ms-keyframes ellipsis { from { width: 10px; } to { width: 35px; }}
+@-webkit-keyframes ellipsis { from { width: 10px; } to { width: 35px; }}
+@keyframes ellipsis { from { width: 10px; } to { width: 35px; }}
+
