@@ -1,7 +1,7 @@
 # Yoda
 
 ## Intro
-Yoda is a Laravel application that curates & classifies trending content from Tweeter. 
+Yoda is a Laravel application that curates & classifies trending content from Twitter. 
 
 It does the following routine:
 1. Fetches tweets from a Tweeter user list every X minutes.
@@ -131,3 +131,4 @@ php artisan nlp:test is_law-fr
 php artisan nlp:test law-fr
 cd ./storage/app/classifiers # generated models
 ```
+

@@ -1,0 +1,15 @@
+{
+  // http://eslint.org/docs/rules/
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+     "jsx": true
+    }
+  },
+
+  "rules": {
+    "no-reserved-keys": 0,        // disallow reserved words being used as object literal keys (off by default)
+    "quote-props": 0
+  }
+}

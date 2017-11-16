@@ -1,31 +1,39 @@
-<!DOCTYPE HTML>
-<html lang="fr">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>@yield('title', 'Yoda')</title>
-
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="@yield('description', 'Yoda description')">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <link rel="shortcut icon" href="{{env('ASSETS_URL')}}/images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="118x118" href="{{env('ASSETS_URL')}}/images/logo-sm.png" />
+    <title>{{ config('app.name') }}</title>
 
-    <!-- stylesheets -->
-    {!! HTML::style('//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=fr') !!}
-    {!! HTML::style('//cdn.jsdelivr.net/fontawesome/4.3.0/css/font-awesome.min.css') !!}
-    
-    <link rel="stylesheet" href="{!! env('STATIC_URL') . elixir('css/vendor.css') !!}">
-    <link rel="stylesheet" href="{!! env('STATIC_URL') . elixir('css/adminlte.css') !!}">
-    <link rel="stylesheet" href="{!! env('STATIC_URL') . elixir('css/app.css') !!}">
+    @yield('before_styles')
+
+    {{-- CDN --}}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/fontawesome/4.7.0/css/font-awesome.min.css"></script>
+
+    <!-- CDN DataTable -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.3.1/css/buttons.bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/colreorder/1.4.1/css/colReorder.dataTables.min.css"/>
+    <link rel="stylesheet" href="//cdn.datatables.net/keytable/2.3.2/css/keyTable.dataTables.min.css"/>
+
+    {{-- App CSS --}}
+    <link rel="stylesheet" href="{{ mix('/css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/yeb.css') }}">
+    <link rel="stylesheet" href="{{ mix('/css/yoda.css') }}">
 
     <!-- Google Font -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,800,300italic,400italic,600italic">
 </head>
 
-<body class="{{$bodyClass or null}} hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 
+{{-- Wrapper --}}
 <div class="wrapper">
 
     <header class="main-header">
@@ -39,36 +47,15 @@
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
+            @include('partials/_menu')
         </nav>
     </header>
 
-    @include('partials._navbar')
+    {{-- Sidebar --}}
+    @include('partials/_sidebar')
 
     {{-- Content --}}
     <div class="content-wrapper">
-
-        @section('top')
-            {{-- Alert [error, success etc] messages --}}
-            @foreach (Alert::getMessages() as $type => $messages)
-                <div class="alert alert-{{ $type }} padding-xs-vr">
-                    @foreach ($messages as $message)
-                        {!! $message !!}
-                    @endforeach
-                </div>
-            @endforeach
-
-            {{-- Laravel error messages --}}
-            @if ($errors->any())
-                <div class="row wrapper bg-danger alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        @show
-        
         <!-- Content Header (Page header) -->
         @yield('header')
 
@@ -77,26 +64,31 @@
             @yield('content')
         </section>
     </div>
-
 </div>
+
+<!-- CDN -->
+<script src="//cdn.jsdelivr.net/g/jquery@3.2.1,bootstrap@3.3.7,lodash@4.17.4"></script>
+
+<!-- CDN DataTable -->
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+
+<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>
+
+<script src="//cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>
+<script src="//cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+<script src="//cdn.datatables.net/colreorder/1.4.1/js/dataTables.colReorder.min.js"></script>
+<script src="//cdn.datatables.net/scroller/1.4.3/js/dataTables.scroller.min.js"></script>
+<script src="//cdn.datatables.net/keytable/2.3.2/js/dataTables.keyTable.min.js"></script>
 
 {!! App::make('JSLocalizeDumper')->dump('app') !!}
 
-{{-- js cdn --}}
-{!! HTML::script('//cdn.jsdelivr.net/g/jquery@2.1.4,bootstrap@3.3.4,jquery.bootstrapvalidator@0.5.3,slimscroll@1.3.6') !!}
-
-{{-- js local --}}
-<script src="{!! env('STATIC_URL') . elixir('js/vendor.js') !!}"></script>
-<script src="{!! env('STATIC_URL') . elixir('js/adminlte.js') !!}"></script>
-<script src="{!! env('STATIC_URL') . elixir('js/app.js') !!}"></script>
-<script src="{!! env('STATIC_URL') . elixir('js/snippets.js') !!}"></script>
-<script src="{!! env('STATIC_URL') . elixir('js/lang_fr.js') !!}"></script>
-
-@if (env('APP_DEBUG'))
-    @if (App::isLocal())
-        {{-- {!! HTML::script('//'.env('DOMAIN').':35721/livereload.js') !!} --}}
-    @endif
-@endif
+<!-- App scripts -->
+<script src="{!! mix('/js/vendor.js') !!}"></script>
+<script src="{!! mix('/js/adminlte.js') !!}"></script>
+<script src="{!! mix('/js/Routes.js') !!}"></script>
 
 </body>
 </html>

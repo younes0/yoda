@@ -1,34 +1,45 @@
 <?php
 
-$items = [];
-
-if (Auth::check()) {
-    $items = array_merge($items, [
-        [_('Accueil'), '/home', 'home'],
-        [_('Links'), '/links', 'link'],
-        [_('Utilisateurs'), '/users', 'group'],
-        [_('Paramètres'), '/settings', 'cog'],
-        [_('Logs'), '/logs', 'file-text-o '],
-    ]);
-
-    if (App::environment() !== 'production') {
-        $items[] = [_('NLP'), '/nlp/documents', 'tag'];
-    }
-}
+$links = [
+    '/'         => trans('app.sidebar_home'),
+    '/links'    => 'Links',
+    '/users'    => 'Users',
+    1           => 'divider',
+    '/settings' => 'Settings',
+    '/logs'     => 'Logs',
+];
 
 ?>
 
-<div id="main-menu" role="navigation">
-	<div id="main-menu-inner">
-		<ul class="navigation">
-        @foreach ($items as $item)
-            <li class="{{ Request::is(ltrim($item[1], '/')) ? 'active' : '' }}">
-                <a href="{{ $item[1] }}" title="{{ $item[0] }}">
-					<i class="menu-icon fa fa-{{ $item[2] }}"></i>
-					<span class="mm-text">{{ $item[0] }}</span>
-                </a>
-            </li>
-        @endforeach
-		</ul>
-	</div>
-</div>
+@if (Auth::check())
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+
+                <li class="header">App</li>
+                
+                @foreach ($links as $path => $label)
+                    @if ($label === 'divider')
+                        <li class="header divider"></li>
+                    @else
+                        <li>
+                            <a href="{{ url($path) }}">
+                                <span>{{ $label }}</span>
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+
+                @if (Auth::user()->is_admin)
+                    <li class="header">{{ trans('app.administration') }}</li>
+                    <li>
+                        <a href="{{ url('/admin/users') }}">
+                            <span>{{ trans('app.users') }}</span>
+                        </a>
+                    </li>
+                @endif
+            </ul>
+        </section>
+    </aside>
+@endif
