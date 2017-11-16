@@ -94,6 +94,8 @@ return [
         Spatie\Activitylog\ActivitylogServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
         // app
         Yoda\Providers\AppServiceProvider::class,

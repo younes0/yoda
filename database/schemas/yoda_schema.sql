@@ -4,19 +4,19 @@
 -- App
 -- -------------------------------------------------
 CREATE TABLE users (
-	id bigserial,
-	email varchar(128) not null,
-	password varchar(128) not null,
-	remember_token varchar(128) null,
-	is_admin boolean default false not null,
-	firstname varchar(128) not null,
-	lastname varchar(128) not null,
-	-- timestamps
-	deleted_at timestamp,
-	created_at timestamp,
-	updated_at timestamp,
-	primary key (id),
-	unique (email)
+    id bigserial,
+    email varchar(128) not null,
+    password varchar(128) not null,
+    remember_token varchar(128) null,
+    is_admin boolean default false not null,
+    firstname varchar(128) not null,
+    lastname varchar(128) not null,
+    -- timestamps
+    deleted_at timestamp,
+    created_at timestamp,
+    updated_at timestamp,
+    primary key (id),
+    unique (email)
 );
 
 CREATE TABLE oauth_tokens (
@@ -28,21 +28,17 @@ CREATE TABLE oauth_tokens (
     primary key (id)
 );
 
-CREATE TYPE firewall_type AS ENUM ('white', 'black');
-
 CREATE TABLE firewall_entries (
     entry varchar(255),
-    type firewall_type,
+    type varchar(255),
     primary key (entry)
 );
 
 -- Tweeter Curation
 -- -------------------------------------------------
-CREATE TYPE origin_type AS ENUM ('home', 'list');
-
 CREATE TABLE origins (
     id serial,
-    type origin_type DEFAULT 'home' not null,
+    type varchar(128) DEFAULT 'home' not null,
     account_id bigint not null,
     list_id bigint,
     name varchar not null DEFAULT 'untitled', 
@@ -125,16 +121,6 @@ CREATE TABLE links_metrics (
     updated_at timestamp,
     primary key (id),
     foreign key (link_id) references links (id) on delete cascade
-);
-
-CREATE TABLE jedi_users (
-    id serial,
-    jedi_id bigint not null,
-    fullname varchar not null,
-    -- timestamps
-    created_at timestamp,
-    updated_at timestamp,
-    primary key (id)
 );
 
 CREATE TABLE posts (

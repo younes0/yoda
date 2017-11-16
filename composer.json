@@ -6,10 +6,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@bitbucket.org:younes0/yeb.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:younes0/socialworth.git"
         },
         { 
@@ -45,7 +41,8 @@
         "paslandau/guzzle-rotating-proxy-subscriber": "^0.3",
         "paslandau/guzzle-application-cache-subscriber": "^0.2",
         "gladeye/oauth1-wordpress": "dev-master",
-        "patricktalmadge/bootstrapper": "^5.8"
+        "patricktalmadge/bootstrapper": "^5.8",
+        "xethron/migrations-generator": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
@@ -87,7 +84,8 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "secure-http": false
     },
     "minimum-stability": "dev",
     "prefer-stable": true
